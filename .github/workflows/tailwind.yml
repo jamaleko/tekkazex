@@ -27,6 +27,4 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add static/css/style.css
           git diff --cached --exit-code || git commit -m "Update CSS"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          git push https://${{ secrets.PAT_TOKEN }}@github.com/jamaleko/tekkazex.git main
