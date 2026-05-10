@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    {{ template "head" . }}
+    {{ template "navbar" . }}
+
+    <div class="max-w-3xl mx-auto px-4 py-6">
+
+        <!-- Card container putih -->
+        <div class="bg-white rounded-lg shadow-sm p-4">
+
+            {{ range .data }}
+            <div class="mb-4">
+
+                <a href="/berita/{{ .Slug }}" 
+                   class="flex flex-col sm:flex-row gap-4 items-start">
+                
+                    <img src="{{ .Gambar }}"
+                         alt="{{ .Judul }}"
+                         class="w-full h-auto sm:w-[160px] sm:h-[100px] object-cover rounded-md">
+                
+                    <div class="flex-1">
+                        <h2 class="text-lg font-bold text-gray-900">
+                            {{ .Judul }}
+                        </h2>
+                
+                        <p class="text-sm text-gray-600 mt-1">
+                            {{ excerpt .Isi }}
+                        </p>
+                    </div>
+                
+                </a>
+                <!-- Divider -->
+                <div class="border-t border-gray-200 mt-4"></div>
+            </div>
+            {{ end }}
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center gap-4 mt-6 text-sm">
+
+                {{ if gt .page 1 }}
+                <a href="/?page={{ sub .page 1 }}"
+                   class="text-blue-600 font-semibold hover:underline">
+                    ← Prev
+                </a>
+                {{ end }}
+
+                <span class="text-gray-600">
+                    Page {{ .page }} of {{ .totalPage }}
+                </span>
+
+                {{ if lt .page .totalPage }}
+                <a href="/?page={{ add .page 1 }}"
+                   class="text-blue-600 font-semibold hover:underline">
+                    Next →
+                </a>
+                {{ end }}
+
+            </div>
+
+        </div>
+    </div>
+
+    {{ template "footer" . }}
