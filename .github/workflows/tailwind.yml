@@ -9,22 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repo
       - uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 🔥 install tailwind + CLI fix
+      # 3️⃣ Install Tailwind CLI
       - run: npm install -D tailwindcss@3.4.3
 
-      # 🔥 build pakai npx (akan jalan)
+      # 4️⃣ Build CSS dengan Tailwind
       - run: npx tailwindcss -i ./input.css -o ./static/css/style.css --minify
 
+      # 5️⃣ Commit & push CSS hasil build (hanya jika ada perubahan)
       - name: Commit CSS
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "actions@github.com"
           git add static/css/style.css
-          git diff --cached --exit-code || git commit -m "Update CSS"
+          git diff --cached --exit-code || git commit -m "auto build css"
           git push https://${{ secrets.PAT_TOKEN }}@github.com/jamaleko/tekkazex.git main
