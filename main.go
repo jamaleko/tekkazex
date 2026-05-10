@@ -62,21 +62,21 @@ func main() {
 	if dsn == "" {
 	    // 🔥 fallback untuk lokal
 	    dsn = "host=localhost user=postgres password=123 dbname=tekuna port=5432 sslmode=disable"
-	}
+	}*/
 	db, err = gorm.Open(postgres.New(postgres.Config{
     DSN:                  os.Getenv("DATABASE_URL"),
     PreferSimpleProtocol: true, // 🔥 WAJIB
 }), &gorm.Config{
     PrepareStmt: false,
-})*/
+})
 
-	// koneksi database (tanpa gcc)
-	dsn := os.Getenv("DATABASE_URL")
+	// koneksi database (tanpa gcc lokalhost)
+	/*dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
 	    // 🔥 fallback untuk lokal
 	    dsn = "host=localhost user=postgres password=123 dbname=tekuna port=5432 sslmode=disable"
 	}
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})*/
 
 	// end db
 
