@@ -25,10 +25,10 @@ jobs:
 
       # 5️⃣ Commit & push CSS hasil build (hanya jika ada perubahan)
       - name: Commit CSS
-  run: |
-    git config --global user.name "github-actions"
-    git config --global user.email "actions@github.com"
-    git add static/css/style.css
-    git diff --cached --exit-code || git commit -m "auto build css"
-    git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/jamaleko/tekkazex.git
-    git push origin main
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add static/css/style.css
+          git diff --cached --exit-code || git commit -m "auto build css"
+          git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/jamaleko/tekkazex.git
+          git push origin main
